@@ -1,0 +1,85 @@
+<!-- <link rel="stylesheet" href="https://bootstraptema.ru/plugins/2015/bootstrap3/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+<script src="https://bootstraptema.ru/plugins/jquery/jquery-1.11.3.min.js"></script>
+<script src="https://bootstraptema.ru/plugins/2015/b-v3-3-6/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://bootstraptema.ru/snippets/style/2015/bootswatch/bootstrap-sandstone-v3.3.6.css" media="screen">
+<link rel="stylesheet" href="https://bootstraptema.ru/snippets/style/2015/bootswatch/custom.min.css">
+
+<br><br><br>
+
+<div class="container">
+<div id="main">
+
+
+ <div class="row" id="real-estates-detail">
+ <div class="col-lg-4 col-md-4 col-xs-12">
+ <div class="panel panel-default">
+ <div class="panel-heading">
+ <header class="panel-title">
+ <div class="text-center">
+<h5>Пользователь сайта</h5>
+ <!-- <strong>Пользователь сайта</strong> -->
+ </div>
+ </header>
+ </div>
+ <div class="panel-body">
+ <div class="text-center" id="author">
+ <img src="https://bootstraptema.ru/snippets/element/2016/profilesection/myprofile.jpg">
+ <h3>Василий Понторезов</h3>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-lg-8 col-md-8 col-xs-12">
+ <div class="panel">
+ <div class="panel-body">
+    <a href="#" class="btn btn-default disabled">О пользователе</a>
+ <!-- <ul id="myTab" class="nav nav-pills">
+    <li class="active"><a href="#" class="btn btn-default disabled">О пользователе</a></li>
+ <li class="active"><a href="#detail" data-toggle="tab">О пользователе</a></li>
+ </ul> -->
+ <div id="myTabContent" class="tab-content">
+<hr>
+ <div class="tab-pane fade active in" id="detail">
+     
+ <h4>История профиля</h4>
+ <table class="table table-th-block">
+ <tbody>
+ <tr><td class="active">Id:</td><td>{{userId}}</td></tr>
+ <tr><td class="active">Login:</td><td>{{userRole}}</td></tr>
+ <tr><td class="active">Name:</td><td>{{userName}}</td></tr>
+ <tr><td class="active">Role:</td><td>{{userName}}</td></tr>
+ <tr><td class="active">Dateofbirth:</td><td>{{userDate}}</td></tr>
+
+</tbody>
+ </table>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+
+</div><!-- /.main -->
+
+
+
+
+
+<!-- <div class="container">
+    <p>{{userId}}</p>
+    <p>{{userRole}}</p>
+    <p>{{userName}}</p>
+    <p>{{userDate}}</p>
+    <div [ngSwitch]="userRole">
+        <ng-template ngSwitchCase="Administrator">
+            <a href="\adduser">AddUser </a>
+            <a href="\addgroup">AddGroup </a>
+            <a href="\listpupil">ListPupil </a>
+            <a href="\listteacher">ListTeacher</a>
+        </ng-template>
+        <ng-template ngSwitchCase="Pupil">Pupil</ng-template>
+        <ng-template ngSwitchDefault></ng-template>
+      </div>
+</div> -->
