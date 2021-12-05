@@ -34,6 +34,15 @@ namespace PersonalityIdentification.Controllers
 
 
         [Authorize(Roles = "SuperAdministrator")]
+        [HttpGet("listeducinst")]
+        public async Task<IActionResult> WriteListTeacher()
+        {
+            var list = await educationalInstitutionService.ListEducinst();
+            return Ok(list);
+        }
+
+
+        [Authorize(Roles = "SuperAdministrator")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEducationalInstitution(int id)
         {

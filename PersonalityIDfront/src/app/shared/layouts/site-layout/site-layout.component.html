@@ -16,26 +16,20 @@
         <div [ngSwitch]="userRole">
             <ul class="nav navbar-nav">
                 <ng-template ngSwitchCase="Administrator">
-                    <li><a href="\adduser">AddUser</a></li>
-                    <li><a href="\addgroup">AddGroup </a></li>
-                    <li><a href="\listteacher">ListTeacher</a></li>
-                    <li><a href="\listpupil">ListPupil </a></li>
-                    <li><a href="\listgroup">ListGroup </a></li>
-                    <li class="dropdown">
-                        <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a> -->
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="\admin\adduser">AddUser</a></li>
+                    <li><a href="\admin\addgroup">AddGroup </a></li>
+                    <li><a href="\admin\listteacher">ListTeacher</a></li>
+                    <li><a href="\admin\listpupil">ListPupil </a></li>
+                    <li><a href="\admin\listgroup">ListGroup </a></li>
                 </ng-template>
                 <ng-template ngSwitchCase="Pupil">Pupil</ng-template>
-                <ng-template ngSwitchDefault></ng-template>
+                <ng-template ngSwitchCase="SuperAdministrator">
+                    <li><a href="\superadmin\listeducinst">ListEducInst</a></li>
+                    <li><a href="\superadmin\listdevice">ListDevice</a></li>
+                    <li><a href="\superadmin\addeducinst">AddEducInst</a></li>
+                    <li><a href="\superadmin\adddevice">AddDevice</a></li>
+                    <li><a href="\superadmin\addadmin">AddAdmin</a></li>
+                </ng-template>
             </ul>
         </div>
         <ul class="nav navbar-nav navbar-right">

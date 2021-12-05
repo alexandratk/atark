@@ -8,8 +8,10 @@ namespace PersonalityIdentification.Itrefaces
     {
          Task<Pupil> AddPupil(Pupil newPupil);
          Task<List<Pupil>> ListPupil(int id);
+         Task<List<Pupil>> ListPupilFromGroup(int id);
          Task DeletePupil(int pupilId);
-         Task<Pupil> GetsUerById(int id);
+         Task<Pupil> GetsPupilById(int id);
+         Task<Group> GetsGroupById(int id);
          Task<Pupil> UpdatePupil(Pupil userInfo, int id);
     }
 }

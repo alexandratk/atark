@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using PersonalityIdentification.DataContext;
+using System.Collections.Generic;
 
 namespace PersonalityIdentification.Itrefaces
 {
@@ -7,5 +8,6 @@ namespace PersonalityIdentification.Itrefaces
     {
          Task<EducationalInstitution> AddEducationalInstitution(EducationalInstitution newEducationalInstitution);
         Task DeleteEducationalInstitution(int educationalInstitutionId);
+        Task<List<EducationalInstitution>> ListEducinst();
     }
 }

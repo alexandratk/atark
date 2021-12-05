@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, tap } from "rxjs";
-import { Group, User, UserData, UserRegister } from "../interfaces/interfaces";
+import { Device, EducationalInstitution, Group, User, UserData, UserRegister } from "../interfaces/interfaces";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -12,7 +12,7 @@ import { AuthService } from "./auth.service";
 export class AddUserService {
 
     private token!: string;
-    userData!: UserData;
+    userData!: any;
     responce: any;
     value: any = localStorage.getItem('auth-token');
     headers: HttpHeaders = new HttpHeaders({ ['Authorization']: 'Bearer ' + this.value });
@@ -67,6 +67,26 @@ export class AddUserService {
 
     add_user_group(group: Group) {
         return this.http.post('http://localhost:5000/Group/addgroup/', group, {headers: this.headers}).subscribe(
+            (data: any) => {
+                alert("ok")
+            },
+            error => {
+                console.warn(error)
+            })
+    }
+
+    add_educinst(educinst: EducationalInstitution) {
+        return this.http.post('http://localhost:5000/EducationalInstitution/addeducinst/', educinst, {headers: this.headers}).subscribe(
+            (data: any) => {
+                alert("ok")
+            },
+            error => {
+                console.warn(error)
+            })
+    }
+
+    add_device(device: Device) {
+        return this.http.post('http://localhost:5000/Device/adddevice/', device, {headers: this.headers}).subscribe(
             (data: any) => {
                 alert("ok")
             },

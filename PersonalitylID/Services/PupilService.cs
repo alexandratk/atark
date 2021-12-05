@@ -30,6 +30,14 @@ namespace PersonalityIdentification.Services
 
         public async Task<List<Pupil>> ListPupil(int id) {
             var users = (from user in database.Pupil.Include("Group")
+                            where user.Group.EducationalInstitution.Id == id
+                             select user).ToList();
+          //   Console.WriteLine(administratorDescription.EducationalInstitution.Id + "//////");
+             return users;
+        }
+
+        public async Task<List<Pupil>> ListPupilFromGroup(int id) {
+            var users = (from user in database.Pupil.Include("Group")
                             where user.Group.Id == id
                              select user).ToList();
           //   Console.WriteLine(administratorDescription.EducationalInstitution.Id + "//////");
@@ -50,12 +58,17 @@ namespace PersonalityIdentification.Services
         }
 
 
-        public async Task<Pupil> GetsUerById(int id)
+        public async Task<Pupil> GetsPupilById(int id)
         {
-            var users = (from user in database.Pupil
-                            where user.Id == id
-                             select user).ToList()[0];
-          //   Console.WriteLine(administratorDescription.EducationalInstitution.Id + "//////");
+            var users = await database.Pupil.Include(u => u.Group).FirstOrDefaultAsync(u => u.Id == id);
+            
+             return users;
+        }
+
+        
+        public async Task<Group> GetsGroupById(int id)
+        {
+            var users = await database.Group.FirstOrDefaultAsync(u => u.Id == id);
              return users;
         }
 

@@ -2,6 +2,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PersonalityIdentification.DataContext;
 using PersonalityIdentification.Itrefaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PersonalityIdentification.Services
 {
@@ -33,6 +35,11 @@ namespace PersonalityIdentification.Services
             database.EducationalInstitution.Remove(deletingEducationalInstitutionDescription);
             await database.SaveChangesAsync();
 
+        }
+
+        public async Task<List<EducationalInstitution>> ListEducinst() {
+            var users = (from user in database.EducationalInstitution select user).ToList();
+             return users;
         }
     }
 }

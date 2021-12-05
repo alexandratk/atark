@@ -46,11 +46,20 @@ namespace PersonalityIdentification.Controllers
             return Ok(list);
         }
 
-        [HttpPost("update/{id}")]
-        public async Task<IActionResult> UpdatePupilProfile(int id, PupilDto pupilDto)
+        [Authorize(Roles = "Administrator")]
+        [HttpGet("listpupilfromgroup/{id}")]
+        public async Task<IActionResult> WriteListPupilFromGroup(int id)
         {
-            var pupil = await PupilService.GetsUerById(id);
-            mapper.Map(pupilDto, pupil);
+            var list = await PupilService.ListPupilFromGroup(id);
+            return Ok(list);
+        }
+
+        [HttpPost("update/{id}")]
+        public async Task<IActionResult> UpdatePupilProfile(int id, [FromBody] PupilDto pupilDto)
+        {
+            Console.WriteLine(pupilDto.GroupId);
+            var pupil = await PupilService.GetsPupilById(id);
+            pupil.Group = await PupilService.GetsGroupById(pupilDto.GroupId);
             var updatedPupil = await PupilService.UpdatePupil(pupil, id);
             return Ok(updatedPupil);
         }

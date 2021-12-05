@@ -21,9 +21,11 @@ export class ListPupilComponent implements OnInit {
   }
 
   list_request() {
+    console.log(this.educInstId);
     this.http.get('http://localhost:5000/Pupil/listpupil/' + this.educInstId, {headers: this.headers}).subscribe(
         (data: any) => {
           this.items = data
+          console.log(data)
           console.log(this.items)
         },
         error => {

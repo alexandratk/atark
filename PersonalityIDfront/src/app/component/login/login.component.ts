@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from "src/app/services/auth.service";
 
 
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
     constructor(private auth: AuthService,
         private router: Router,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        private translate: TranslateService) {
 
     }
 
@@ -35,7 +37,9 @@ export class LoginComponent implements OnInit {
             }
         })
     }
-
+    useLanguage(language: string): void {
+        this.translate.use(language);
+    }
     onSubmit() {
         this.auth.login(this.form.value);
         if (this.auth.isAuthenticated()) {

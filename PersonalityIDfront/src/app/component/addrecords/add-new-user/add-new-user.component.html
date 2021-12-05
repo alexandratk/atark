@@ -23,6 +23,14 @@
             <div class="col-lg-10">
                 <input type="password" class="form-control" id="inputPassword" formControlName="password" placeholder="Password">
             </div>
+            <div [ngSwitch]="selectedRole">
+                <ng-template ngSwitchCase="Ученик">
+                    <label for="inputPassword" class="col-lg-2 control-label">GroupId</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputPassword" formControlName="groupId" placeholder="groupId">
+                    </div>
+                </ng-template>
+            </div>
         </div>
 
         <div class="form-group">

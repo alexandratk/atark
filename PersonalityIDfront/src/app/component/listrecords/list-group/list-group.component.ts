@@ -17,7 +17,7 @@ export class ListGroupComponent implements OnInit {
     this.list_request()
   }
   list_request() {
-    this.http.get('http://localhost:5000/Group/listgroup/' + + this.educInstId, {headers: this.headers}).subscribe(
+    this.http.get('http://localhost:5000/Group/listgroup/' + this.educInstId, {headers: this.headers}).subscribe(
         (data: any) => {
           this.items = data
           console.log(this.items)
@@ -42,7 +42,7 @@ export class ListGroupComponent implements OnInit {
 
   onSubmitListPupil(id: any) {
     localStorage.setItem('number-group', id);
-    this.router.navigateByUrl('listpupilfromgroup');
+    this.router.navigateByUrl("admin/listpupilfromgroup");
     alert(id)
   }
 

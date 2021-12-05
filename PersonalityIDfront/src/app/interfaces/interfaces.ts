@@ -35,3 +35,14 @@ export interface Pupil {
     id: string
     groupId:string
 }
+
+export interface Device {
+    id: string
+    educationalInstitutionId :string
+}
+
+export interface EducationalInstitution {
+    id: string
+    title: string
+    address: string
+}

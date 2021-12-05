@@ -13,7 +13,7 @@ export class AddNewUserComponent implements OnInit {
 
   form!: FormGroup;
   responce: any;
-  userRegister!: UserRegister;
+  userRegister!: any;
   user!: User;
   select_list = ["Администратор", "Ученик", "Учитель", "Родственник"];
   selectedRole = this.select_list[1];
@@ -26,8 +26,9 @@ export class AddNewUserComponent implements OnInit {
       name: new FormControl(null, [Validators.required]),
       dateofbirth: new FormControl(null, [Validators.required]),
       login: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required])
-  })
+      password: new FormControl(null, [Validators.required]),
+      groupId: new FormControl(null, [Validators.required])
+    })
   }
 
   onSubmit() {
