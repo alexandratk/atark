@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PersonalityIdentification.DataContext;
 using PersonalityIdentification.Itrefaces;
 using PersonalityIdentification.Helpers;
+using System.Collections.Generic;
 
 namespace PersonalityIdentification.Services
 {
@@ -47,6 +48,13 @@ namespace PersonalityIdentification.Services
             database.Administrator.Remove(deletingAdministratorDescription);
             await database.SaveChangesAsync();
 
+        }
+
+        public async Task<List<Administrator>> ListAdmin(int id) {
+            var users = (from user in database.Administrator.Include("EducationalInstitution")
+                            where user.EducationalInstitution.Id == id
+                             select user).ToList();
+             return users;
         }
     }
 }

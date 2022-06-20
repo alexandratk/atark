@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UserRegister } from 'src/app/interfaces/interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-pupil',
@@ -13,7 +13,8 @@ export class ListPupilComponent implements OnInit {
   educInstId: any = localStorage.getItem("auth-udecinstid")
   value: any = localStorage.getItem('auth-token');
   headers: HttpHeaders = new HttpHeaders({ ['Authorization']: 'Bearer ' + this.value });
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router,
+    private route: ActivatedRoute) { 
     this.list_request()
   }
 
@@ -33,7 +34,7 @@ export class ListPupilComponent implements OnInit {
         })
   }
 
-  onSubmit(id: any) {
+  onSubmitDelete(id: any) {
     alert(id)
     this.http.delete('http://localhost:5000/Pupil/' + id, {headers: this.headers}).subscribe(
       () => {
@@ -42,5 +43,10 @@ export class ListPupilComponent implements OnInit {
       error => {
           console.warn(error)
       })
+  }
+
+  onSubmitListParent(id: any) {
+    localStorage.setItem('number-pupil', id);
+    this.router.navigateByUrl("admin/listparentfrompupil");
   }
 }

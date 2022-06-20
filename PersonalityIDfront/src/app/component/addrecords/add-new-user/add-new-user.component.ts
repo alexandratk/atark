@@ -15,7 +15,7 @@ export class AddNewUserComponent implements OnInit {
   responce: any;
   userRegister!: any;
   user!: User;
-  select_list = ["Администратор", "Ученик", "Учитель", "Родственник"];
+  select_list = ["Адміністратор", "Учень", "Вчитель", "Опікун"];
   selectedRole = this.select_list[1];
   educInstId: any = localStorage.getItem("auth-udecinstid")
   constructor(private http: HttpClient,
@@ -34,17 +34,18 @@ export class AddNewUserComponent implements OnInit {
   onSubmit() {
     this.userRegister = this.form.value
     this.userRegister.educationalInstitutionId = this.educInstId
+    this.userRegister.educInstId = this.educInstId
     this.userRegister.id = "1"
-    if (this.selectedRole == "Администратор") {
+    if (this.selectedRole == "Адміністратор") {
       this.addservice.add_user_admin(this.userRegister)
     }
-    if (this.selectedRole == "Родственник") {
+    if (this.selectedRole == "Опікун") {
       this.addservice.add_user_parent(this.userRegister)
     }
-    if (this.selectedRole == "Учитель") {
+    if (this.selectedRole == "Вчитель") {
       this.addservice.add_user_teacher(this.userRegister)
     }
-    if (this.selectedRole == "Ученик") {
+    if (this.selectedRole == "Учень") {
       this.addservice.add_user_pupil(this.userRegister)
     }
 

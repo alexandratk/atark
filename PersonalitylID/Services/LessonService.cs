@@ -27,13 +27,26 @@ namespace PersonalityIdentification.Services
         {
             await database.Lesson.AddAsync(newLesson);
             await database.SaveChangesAsync();
-
+            var groups = newLesson.Groups;
+            var pupils = (from item in database.Pupil.Include("Group")
+                         where groups.Contains(item.Group)
+                          select item).ToList();
+            for (int i = 0; i < pupils.Count; i++) {
+                Mark newMark = new Mark();
+                newMark.Lesson = newLesson;
+                newMark.Pupil = pupils[i];
+                newMark.Description = newLesson.Description;
+                newMark.LessonMark = "";
+                newMark.DateTimeMark = newLesson.Dateoffinish;
+                await database.Mark.AddAsync(newMark);
+                await database.SaveChangesAsync();
+            }
             return newLesson;
         }
 
         public List<Lesson> FindTeacherTimeTable(int id) {
-            List<Lesson> lessonsTeacher = (from user in database.Lesson
-                where user.Teacher.Id == id
+            List<Lesson> lessonsTeacher = (from user in database.Lesson.Include("Teacher").Include("Groups")
+                where user.Teacher.Id == id orderby user.Dateofstart
                     select user).ToList();
             return lessonsTeacher;
         }
@@ -45,6 +58,24 @@ namespace PersonalityIdentification.Services
             List<Lesson> lessonsTeacher = (from user in database.Lesson
                 where user.Groups.Contains(pupil.Group)
                     select user).ToList();
+            return lessonsTeacher;
+        }
+
+        public List<Lesson> FindGroupTimeTable(int id) {
+            Group pupil = (from user in database.Group
+                where user.Id == id
+                    select user).ToList()[0];
+            List<Lesson> lessonsTeacher = (from user in database.Lesson.Include("Teacher").Include("Groups")
+                where user.Groups.Contains(pupil) orderby user.Dateofstart
+                    select user).ToList();
+            return lessonsTeacher;
+        }
+
+        public List<Lesson> FindTimeTable(int id) {
+            List<Lesson> lessonsTeacher = (from user in database.Lesson.Include("Teacher").Include("Groups")
+                              where user.EducInstId == id 
+                              orderby user.Dateofstart  
+                        select user).ToList();
             return lessonsTeacher;
         }
 
@@ -91,6 +122,13 @@ namespace PersonalityIdentification.Services
         }
 
         public List<String> FindPoint(FindPointHelper findPointHelper) {
+            findPointHelper.GroupsId = new List<int>();
+            if (findPointHelper.strGroupsId != "") {
+                string[] temp = findPointHelper.strGroupsId.Split('$');
+                for (int i = 0; i < temp.Length; i++){
+                findPointHelper.GroupsId.Add(Convert.ToInt32(temp[i]));
+                }
+            }
             List<Group> groups = (from user in database.Group.Include("EducationalInstitution")
                             where findPointHelper.GroupsId.Contains(user.Id)
                              select user).ToList();
@@ -141,6 +179,8 @@ namespace PersonalityIdentification.Services
                         if (!lessonsGroupsDate[i].Contains(t)) {
                             freeLessonsPupilWindow[i].Add(counter_window);
                             freeLessonsPupil[i].Add(t.ToString() + "-" + daysWeekTableFinish[indexDayWeek][j]);
+                            Console.WriteLine(t.ToString() + "-" + daysWeekTableFinish[indexDayWeek][j] + " " + counter_window);
+                            Console.WriteLine("////////");
                             counter_window++;
                         }
                     }
@@ -148,25 +188,30 @@ namespace PersonalityIdentification.Services
             }
             List<String> result = new List<String>();
             List<int> resultWindow = new List<int>();
-            for(int i = 0; i < freeLessonsPupil[0].Count; i++) {
-                bool flagFirst = true;
-                int counterWindow = 0;
-                for (int j = 1; j < freeLessonsPupil.Count & flagFirst; j++) {
-                    bool flagSecond = false;
-                    for (int k = 0; k < freeLessonsPupil[j].Count & !flagSecond; k++) {
-                        if (freeLessonsPupil[j][k] == freeLessonsPupil[0][i]) {
-                            flagSecond = true;
-                            counterWindow += freeLessonsPupilWindow[j][k];
+            if (freeLessonsPupil.Count > 1) {
+                for(int i = 0; i < freeLessonsPupil[0].Count; i++) {
+                    bool flagFirst = true;
+                    int counterWindow = 0;
+                    for (int j = 1; j < freeLessonsPupil.Count & flagFirst; j++) {
+                        bool flagSecond = false;
+                        for (int k = 0; k < freeLessonsPupil[j].Count & !flagSecond; k++) {
+                            if (freeLessonsPupil[j][k] == freeLessonsPupil[0][i]) {
+                                flagSecond = true;
+                                counterWindow += freeLessonsPupilWindow[j][k];
+                            }
+                        }
+                        if (!flagSecond) {
+                            flagFirst = false;
                         }
                     }
-                    if (!flagSecond) {
-                        flagFirst = false;
+                    if (flagFirst) {
+                        result.Add(freeLessonsPupil[0][i]);
+                        resultWindow.Add(counterWindow);
                     }
                 }
-                if (flagFirst) {
-                    result.Add(freeLessonsPupil[0][i]);
-                    resultWindow.Add(counterWindow);
-                }
+            } else {
+                result = freeLessonsPupil[0];
+                resultWindow = freeLessonsPupilWindow[0];
             }
             
             for (int i = 0; i < result.Count; i++) {

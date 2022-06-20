@@ -22,6 +22,18 @@ import { ListDeviceComponent } from "./component/listrecords/list-device/list-de
 import { ListDeviceFromEducinstComponent } from "./component/listrecords/list-device-from-educinst/list-device-from-educinst.component";
 import { AddNewAdminComponent } from "./component/addrecords/add-new-admin/add-new-admin.component";
 import { AddNewDeviceComponent } from "./component/addrecords/add-new-device/add-new-device.component";
+import { ListAdminComponent } from "./component/listrecords/list-admin/list-admin.component";
+import { TimetableComponent } from "./component/timetable/timetable.component";
+import { ListParentFromPupilComponent } from "./component/listrecords/list-parent-from-pupil/list-parent-from-pupil.component";
+import { ListBackupDbComponent } from "./component/listrecords/list-backup-db/list-backup-db.component";
+import { UpdateUserComponent } from "./component/updaterecords/update-user/update-user.component";
+import { ListMovingPersonComponent } from "./component/listrecords/list-moving-person/list-moving-person.component";
+import { AddLessonComponent } from "./component/addrecords/add-lesson/add-lesson.component";
+import { ListAbsentFromClassComponent } from "./component/listrecords/list-absent-from-class/list-absent-from-class.component";
+import { TeacherLayoutComponent } from "./shared/layouts/teacher-layout/teacher-layout.component";
+import { TeacherGuard } from "./guard/teacher.guard";
+import { ListPupilOnLessonComponent } from "./component/listrecords/list-pupil-on-lesson/list-pupil-on-lesson.component";
+import { ListMarksComponent } from "./component/listrecords/list-marks/list-marks.component";
 
 const routes: Routes = [
     {
@@ -34,10 +46,23 @@ const routes: Routes = [
                 path: 'admin', component: AdminLayoutComponent, canActivate: [AdminGuard], canActivateChild: [AdminGuard], children: [
                     { path: 'adduser', component: AddNewUserComponent },
                     { path: 'addgroup', component: AddNewGroupComponent },
+                    { path: 'addlesson', component: AddLessonComponent},
                     { path: 'listpupil', component: ListPupilComponent },
                     { path: 'listpupilfromgroup', component: ListPupilFromGroupComponent },
                     { path: 'listgroup', component: ListGroupComponent },
-                    { path: 'listteacher', component: ListTeacherComponent }
+                    { path: 'listteacher', component: ListTeacherComponent },
+                    { path: 'listparentfrompupil', component: ListParentFromPupilComponent},
+                    { path: 'listmovingperson', component: ListMovingPersonComponent },
+                    { path: 'updateuser', component: UpdateUserComponent },
+                    { path: 'timetable', component: TimetableComponent},
+                    { path: 'listabsentfromclass', component: ListAbsentFromClassComponent}
+                ]
+            },
+            {
+                path: 'teacher', component: TeacherLayoutComponent, canActivate: [TeacherGuard], canActivateChild: [TeacherGuard], children :[
+                    { path: 'timetable', component: TimetableComponent},
+                    { path: 'listpupilonlesson', component: ListPupilOnLessonComponent},
+                    { path: 'listmarks', component: ListMarksComponent}
                 ]
             },
             {
@@ -45,6 +70,8 @@ const routes: Routes = [
                     { path: 'listeducinst', component: ListEducinstComponent},
                     { path: 'listdevicefromeducinst', component: ListDeviceFromEducinstComponent},
                     { path: 'listdevice', component: ListDeviceComponent},
+                    { path: 'listadmin', component: ListAdminComponent},
+                    { path: 'listbackupdb', component: ListBackupDbComponent},
                     { path: 'addeducinst', component: AddNewEducinstComponent},
                     { path: 'addadmin', component: AddNewAdminComponent},
                     { path: 'adddevice', component: AddNewDeviceComponent}

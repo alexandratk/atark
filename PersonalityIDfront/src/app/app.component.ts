@@ -9,8 +9,15 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  temp: any;
   constructor(private http: HttpClient, private translate: TranslateService){
-      translate.setDefaultLang('uk');
+    this.temp = localStorage.getItem('translate')
+    if (this.temp == null) {
+      localStorage.setItem('translate', 'uk');
+      this.translate.use('uk');
+    } else {
+      this.translate.use(this.temp);
+    }
+     // translate.setDefaultLang('uk');
   }
 }

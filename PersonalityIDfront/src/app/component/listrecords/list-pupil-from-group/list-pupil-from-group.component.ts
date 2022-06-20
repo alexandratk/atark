@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Pupil } from 'src/app/interfaces/interfaces';
 
 @Component({
@@ -16,7 +17,8 @@ export class ListPupilFromGroupComponent implements OnInit {
   educInstId: any = localStorage.getItem("auth-udecinstid")
   value: any = localStorage.getItem('auth-token');
   headers: HttpHeaders = new HttpHeaders({ ['Authorization']: 'Bearer ' + this.value });
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router,
+    private route: ActivatedRoute) { 
     this.list_request()
   }
 
@@ -50,14 +52,16 @@ export class ListPupilFromGroupComponent implements OnInit {
 
   onSubmitUpdate(item:any, id: any) {
     alert(id)
-    this.http.post('http://localhost:5000/Pupil/update/' + id, item, {headers: this.headers}).subscribe(
-      () => {
-        location.reload();
-        alert(id + "//////////");
-      },
-      error => {
-          console.warn(error)
-      })
+    // this.http.post('http://localhost:5000/Pupil/update/' + id, item, {headers: this.headers}).subscribe(
+    //   () => {
+    //     location.reload();
+    //     alert(id + "//////////");
+    //   },
+    //   error => {
+    //       console.warn(error)
+    //   })
+    localStorage.setItem('number-pupil', id);
+    this.router.navigateByUrl("admin/updateuser");
   }
 
   onSubmitAddPupil() {

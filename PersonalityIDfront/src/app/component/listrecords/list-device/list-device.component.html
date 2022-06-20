@@ -1,12 +1,12 @@
 
 <div class="bs-component">
+    <h4 [translate]="'list_device'">List device</h4>
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
+                <th [translate]="'list_device_ID'">ID</th>
+                <th [translate]="'list_device_NUMBER'">NUMBER</th>
             </tr>
         </thead>
         <tbody>
@@ -15,7 +15,7 @@
                 <td>{{item.id}}</td>
                 <td>{{item.number}}</td>
                 <td></td>
-                <td><button (click)="onSubmitDelete(item.id)">delete</button></td>
+                <td><button (click)="onSubmitDelete(item.id)" [translate]="'button_list_delete'">delete</button></td>
             </tr>
         </tbody>
     </table>

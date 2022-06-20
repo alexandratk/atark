@@ -16,6 +16,7 @@ namespace PersonalityIdentification.DataContext
         public DbSet<MovingTeacher> MovingTeacher { get; set; }
         public DbSet<EducationalInstitution> EducationalInstitution { get; set; }
         public DbSet<Lesson> Lesson { get; set; }
+        public DbSet<Mark> Mark { get; set; }
 
 
         public MyDataContext(DbContextOptions<MyDataContext> options) : base(options)
@@ -40,6 +41,10 @@ namespace PersonalityIdentification.DataContext
             modelBuilder.Entity<Group>().HasMany(t => t.Lessons).WithMany(p => p.Groups);
             modelBuilder.Entity<Teacher>().HasMany(t => t.Groups).WithOne(p => p.Teacher);
             modelBuilder.Entity<Teacher>().HasMany(t => t.Lessons).WithOne(p => p.Teacher);
+            modelBuilder.Entity<Lesson>().HasMany(t => t.Marks).WithOne(p => p.Lesson);
+            modelBuilder.Entity<Pupil>().HasMany(t => t.Marks).WithOne(p => p.Pupil);
+            
+
 
             modelBuilder.Entity<Teacher>().Property(r => r.Role).HasDefaultValue("Teacher");
             modelBuilder.Entity<Pupil>().Property(r => r.Role).HasDefaultValue("Pupil");

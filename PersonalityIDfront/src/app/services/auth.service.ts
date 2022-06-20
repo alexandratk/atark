@@ -36,6 +36,15 @@ export class AuthService {
                             console.warn(error)
                         })
                 }
+                if (this.userData.role == "Teacher") {
+                    this.http.get('http://localhost:5000/Teacher/teacher/' + this.userData.id).subscribe(
+                        (data: any) => {
+                            localStorage.setItem('auth-udecinstid', data)
+                        },
+                        error => {
+                            console.warn(error)
+                        })
+                }
                 this.router.navigate(['/profile'])
             },
             error => {

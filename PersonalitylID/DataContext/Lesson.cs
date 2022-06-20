@@ -16,6 +16,7 @@ namespace PersonalityIdentification.DataContext
         public string Description { get; set; }
         public Teacher Teacher { get; set; }
         public List<Group> Groups { get; set; }
+        public List<Mark> Marks { get; set; }
         public int EducInstId { get; set; }
     }
 }

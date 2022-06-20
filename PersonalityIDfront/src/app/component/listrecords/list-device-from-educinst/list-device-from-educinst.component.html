@@ -1,12 +1,12 @@
 
 <div class="bs-component">
+    <h4 [translate]="'device_list_id_educational_institution'">Device list / id educational institution: </h4><h4>{{namberEducinst}}</h4>
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
+                <th [translate]="'list_device_ID'">ID</th>
+                <th [translate]="'list_device_NUMBER'">NUMBER</th>
             </tr>
         </thead>
         <tbody>
@@ -15,17 +15,15 @@
                 <td>{{item.id}}</td>
                 <td>{{item.number}}</td>
                 <td></td>
-                <td><button (click)="onSubmitDelete(item.id)">delete</button></td>
+                <td><button (click)="onSubmitDelete(item.id)" [translate]="'button_list_delete'">delete</button></td>
             </tr>
         </tbody>
     </table>
-</div><!-- /example -->
 <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitAddDevice()">
-    <div class="form-group">
-        <label for="inputName" class="col-lg-2 control-label">DeviceId</label>
+        <label for="inputName" class="col-lg-2 control-label" [translate]="'label_device_id'">Device Id</label>
         <div class="col-lg-10">
             <input type="text" class="form-control" id="inputText" formControlName="id"  placeholder="id">
         </div>
-        <button>addDevice</button>
-        </div>
-        </form>
+        <button [translate]="'button_add'">Add</button>
+</form>
+</div><!-- /example -->

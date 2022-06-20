@@ -95,6 +95,7 @@ namespace PersonalitylID
             services.AddScoped<IMovingTeacherService, MovingTeacherService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ILessonService, LessonService>();
+            services.AddScoped<IMarkService, MarkService>();
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<MyDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PersonalIdConString")));
         }

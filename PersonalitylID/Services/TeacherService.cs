@@ -26,6 +26,13 @@ namespace PersonalityIdentification.Services
             return newTeacher;
         }
 
+        public async Task<Teacher> GetEducInst(int id){
+            var users = (from user in database.Teacher.Include("EducationalInstitution")
+                             where user.Id == id
+                             select user).ToList();
+             return users[0];
+        }
+
         public async Task<List<Teacher>> ListTeacher(int id) {
             var users = (from user in database.Teacher.Include("EducationalInstitution")
                             where user.EducationalInstitution.Id == id

@@ -17,6 +17,8 @@ namespace PersonalityIdentification.Itrefaces
          List<String> FindPoint(FindPointHelper findPointHelper);
          List<Lesson> FindTeacherTimeTable(int id);
          List<Lesson> FindPupilTimeTable(int id);
+         List<Lesson> FindGroupTimeTable(int id);
+         List<Lesson> FindTimeTable(int id);
          Task DeleteLesson(int LessonId);
     }
 }

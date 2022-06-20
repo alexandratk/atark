@@ -8,7 +8,7 @@ using PersonalityIdentification.Dtos;
 using PersonalityIdentification.Itrefaces;
 using System.Linq;
 using System;
-
+using Microsoft.AspNetCore.Authorization;
 namespace PersonalityIdentification.Controllers
 {
     // http://localhost:5000/[controllernmae]/apiName
@@ -51,6 +51,14 @@ namespace PersonalityIdentification.Controllers
                 return Ok("message for parent: " + message);
             }
             return Ok(newMovingPupil);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpGet("listmovingpupil/{id}")]
+        public async Task<IActionResult> WriteListTeacher(int id)
+        {
+            var list = await MovingPupilService.ListMovingPupil(id);
+            return Ok(list);
         }
 
 

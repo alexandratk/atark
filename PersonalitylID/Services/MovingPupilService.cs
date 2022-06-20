@@ -2,7 +2,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PersonalityIdentification.DataContext;
 using PersonalityIdentification.Itrefaces;
-
+using System.Collections.Generic;
+using System.Linq;
 namespace PersonalityIdentification.Services
 {
     public class MovingPupilService: IMovingPupilService
@@ -33,6 +34,11 @@ namespace PersonalityIdentification.Services
             database.MovingPupil.Remove(deletingMovingPupilDescription);
             await database.SaveChangesAsync();
 
+        }
+
+        public async Task<List<MovingPupil>> ListMovingPupil(int id) {
+            var users = (from user in database.MovingPupil.Include("Device").Include("Pupil") where user.Device.Id == id select user).ToList();
+             return users;
         }
     }
 }

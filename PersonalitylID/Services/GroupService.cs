@@ -64,7 +64,7 @@ namespace PersonalityIdentification.Services
 
 
         public async Task<List<Group>> ListGroup(int id) {
-            var users = (from user in database.Group.Include("EducationalInstitution")
+            var users = (from user in database.Group.Include("EducationalInstitution").Include("Teacher")
                             where user.EducationalInstitution.Id == id
                              select user).ToList();
              return users;

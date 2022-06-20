@@ -33,7 +33,7 @@ export class ListDeviceComponent implements OnInit {
 
   onSubmitDelete(id: any) {
     alert(id)
-    this.http.delete('http://localhost:5000/EducationalInstitution/' + id, {headers: this.headers}).subscribe(
+    this.http.delete('http://localhost:5000/Device/' + id, {headers: this.headers}).subscribe(
       () => {
         location.reload();
       },

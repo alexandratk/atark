@@ -166,6 +166,37 @@ namespace PersonalitylID.Migrations
                     b.ToTable("Lesson");
                 });
 
+            modelBuilder.Entity("PersonalityIdentification.DataContext.Mark", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateTimeMark")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LessonMark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PupilId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("PupilId");
+
+                    b.ToTable("Mark");
+                });
+
             modelBuilder.Entity("PersonalityIdentification.DataContext.MovingPupil", b =>
                 {
                     b.Property<int>("Id")
@@ -228,6 +259,9 @@ namespace PersonalitylID.Migrations
 
                     b.Property<DateTime>("Dateofbirth")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("EducInstId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
                         .HasColumnType("nvarchar(max)");
@@ -317,6 +351,9 @@ namespace PersonalitylID.Migrations
                     b.Property<DateTime>("Dateofbirth")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("EducationalInstitutionId")
                         .HasColumnType("int");
 
@@ -396,6 +433,21 @@ namespace PersonalitylID.Migrations
                         .HasForeignKey("TeacherId");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("PersonalityIdentification.DataContext.Mark", b =>
+                {
+                    b.HasOne("PersonalityIdentification.DataContext.Lesson", "Lesson")
+                        .WithMany("Marks")
+                        .HasForeignKey("LessonId");
+
+                    b.HasOne("PersonalityIdentification.DataContext.Pupil", "Pupil")
+                        .WithMany("Marks")
+                        .HasForeignKey("PupilId");
+
+                    b.Navigation("Lesson");
+
+                    b.Navigation("Pupil");
                 });
 
             modelBuilder.Entity("PersonalityIdentification.DataContext.MovingPupil", b =>
@@ -484,6 +536,11 @@ namespace PersonalitylID.Migrations
                     b.Navigation("Pupils");
                 });
 
+            modelBuilder.Entity("PersonalityIdentification.DataContext.Lesson", b =>
+                {
+                    b.Navigation("Marks");
+                });
+
             modelBuilder.Entity("PersonalityIdentification.DataContext.Parent", b =>
                 {
                     b.Navigation("PupilParents");
@@ -491,6 +548,8 @@ namespace PersonalitylID.Migrations
 
             modelBuilder.Entity("PersonalityIdentification.DataContext.Pupil", b =>
                 {
+                    b.Navigation("Marks");
+
                     b.Navigation("MovingPupils");
 
                     b.Navigation("PupilParents");

@@ -17,15 +17,14 @@
  <div class="panel-heading">
  <header class="panel-title">
  <div class="text-center">
-<h5>Пользователь сайта</h5>
+<h5 [translate]="'profile_website_user'">Website user</h5>
  <!-- <strong>Пользователь сайта</strong> -->
  </div>
  </header>
  </div>
  <div class="panel-body">
  <div class="text-center" id="author">
- <img src="https://bootstraptema.ru/snippets/element/2016/profilesection/myprofile.jpg">
- <h3>Василий Понторезов</h3>
+ <h3>{{userName}}</h3>
  </div>
  </div>
  </div>
@@ -33,7 +32,7 @@
  <div class="col-lg-8 col-md-8 col-xs-12">
  <div class="panel">
  <div class="panel-body">
-    <a href="#" class="btn btn-default disabled">О пользователе</a>
+    <a href="#" class="btn btn-default disabled" [translate]="'profile_about_user'">About user</a>
  <!-- <ul id="myTab" class="nav nav-pills">
     <li class="active"><a href="#" class="btn btn-default disabled">О пользователе</a></li>
  <li class="active"><a href="#detail" data-toggle="tab">О пользователе</a></li>
@@ -42,14 +41,13 @@
 <hr>
  <div class="tab-pane fade active in" id="detail">
      
- <h4>История профиля</h4>
+ <h4 [translate]="'profile_profile_history'">Profile history</h4>
  <table class="table table-th-block">
  <tbody>
- <tr><td class="active">Id:</td><td>{{userId}}</td></tr>
- <tr><td class="active">Login:</td><td>{{userRole}}</td></tr>
- <tr><td class="active">Name:</td><td>{{userName}}</td></tr>
- <tr><td class="active">Role:</td><td>{{userName}}</td></tr>
- <tr><td class="active">Dateofbirth:</td><td>{{userDate}}</td></tr>
+ <tr><td class="active" [translate]="'profile_Id'">Id:</td><td>{{temp.id}}</td></tr>
+ <tr><td class="active" [translate]="'profile_Name'">Name:</td><td>{{temp.name}}</td></tr>
+ <tr><td class="active" [translate]="'profile_Role'">Role:</td><td>{{temp.role}}</td></tr>
+ <tr><td class="active" [translate]="'profile_Date_of_birth'">Date of birth:</td><td>{{temp.dateofbirth | date:'dd-MM-yyyy'}} </td></tr>
 
 </tbody>
  </table>

@@ -1,12 +1,12 @@
-
 <div class="bs-component">
+    <h3 [translate]="'educational_institution_list'">Educational institution / list</h3>
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
+                <th [translate]="'educational_institution_list_ID'">ID</th>
+                <th [translate]="'educational_institution_list_TITLE'">TITLE</th>
+                <th [translate]="'educational_institution_list_ADDRESS'">ADDRESS</th>
             </tr>
         </thead>
         <tbody>
@@ -14,9 +14,11 @@
                 <td>{{i+1}}</td>
                 <td>{{item.id}}</td>
                 <td>{{item.title}}</td>
+                <td>{{item.address}}</td>
                 <td></td>
-                <td><button (click)="onSubmitDelete(item.id)">delete</button></td>
-                <td><button (click)="onSubmitListPupil(item.id)">list pupil</button></td>
+                <td><button (click)="onSubmitDelete(item.id)" [translate]="'educational_institution_list_delete'">delete</button></td>
+                <td><button (click)="onSubmitListDevice(item.id)" [translate]="'educational_institution_list_list_device'">list device</button></td>
+                <td><button (click)="onSubmitListAdmin(item.id)" [translate]="'educational_institution_list_list_admin'">list admin</button></td>
             </tr>
         </tbody>
     </table>

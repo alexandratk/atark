@@ -1,0 +1,43 @@
+<div class="form-find-absent">
+    <h4 [translate]="'absent'">Absent</h4>
+    <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'absent_list_DATE'">DATE</label>
+            <div class="col-lg-10">
+                <input type="date" class="form-control" id="inputText" formControlName="date"  placeholder="date">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+
+                <button type="submit" class="btn btn-primary" [translate]="'button_find'">Find</button>
+            </div>
+        </div>
+    </form>
+    <div class="bs-component">
+        <h4 [translate]="'list_admin'">List admin</h4>
+        <h4>{{count_absents}}</h4>
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th [translate]="'admin_NAME'">NAME</th>
+                    <th [translate]="'admin_DATE_OF_BIRTH'">DATE OF BIRTH</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items; index as i;">
+                    <td>{{i+1}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.dateofbirth | date:'dd-MM-yyyy'}}</td>
+                    <td></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- /example -->
+    
+</div>

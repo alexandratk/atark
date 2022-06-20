@@ -1,11 +1,13 @@
 <div class="bs-component">
+    <h4 [translate]="'list_pupil_from_group'">Pupil / id group:</h4>
+    <h4>{{namberGroup}}</h4>
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
+                <th>ID</th>
+                <th [translate]="'admin_NAME'">NAME</th>
+                <th [translate]="'admin_DATE_OF_BIRTH'">DATE OF BIRTH</th>
             </tr>
         </thead>
         <tbody>
@@ -13,19 +15,19 @@
                 <td>{{i+1}}</td>
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
-                <td>{{item.dateofbirth}}</td>
-                <td><button (click)="onSubmitDelete(item.id)">delete</button></td>
-                <td><button (click)="onSubmitUpdate(item, item.id)">update</button></td>
+                <td>{{item.dateofbirth | date:'dd-MM-yyyy'}}</td>
+                <td><button (click)="onSubmitDelete(item.id)" [translate]="'button_list_delete'">delete</button></td>
+                <td><button (click)="onSubmitUpdate(item, item.id)" [translate]="'button_list_update'">update</button></td>
             </tr>
         </tbody>
     </table>
 </div><!-- /example -->
 <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmitAddPupil()">
     <div class="form-group">
-        <label for="inputName" class="col-lg-2 control-label">PupilId</label>
+        <label for="inputName" class="col-lg-2 control-label" [translate]="'label_Pupil_id'">Pupil Id</label>
         <div class="col-lg-10">
             <input type="text" class="form-control" id="inputText" formControlName="id"  placeholder="id">
+            <button [translate]="'button_add'">Add</button>
         </div>
-        <button>addPupil</button>
         </div>
         </form>

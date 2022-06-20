@@ -51,13 +51,21 @@ namespace PersonalityIdentification.Controllers
         //     return Ok(newTeacher);
         // }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Teacher")]
         [HttpGet("listteacher/{id}")]
         public async Task<IActionResult> WriteListTeacher(int id)
         {
             Console.WriteLine(id);
             var list = await TeacherService.ListTeacher(id);
             return Ok(list);
+        }
+
+        [HttpGet("teacher/{id}")]
+        public async Task<IActionResult> GetEducInstTeacher(int id)
+        {
+            Console.WriteLine(id);
+            Teacher timeEducationalInstitution = await TeacherService.GetEducInst(id);
+            return Ok(timeEducationalInstitution.EducationalInstitution.Id);
         }
 
         [Authorize(Roles = "Administrator")]

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using PersonalityIdentification.DataContext;
 using PersonalityIdentification.Itrefaces;
 using PersonalityIdentification.Helpers;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PersonalityIdentification.Services
 {
@@ -35,6 +37,14 @@ namespace PersonalityIdentification.Services
             database.Parent.Remove(deletingParentDescription);
             await database.SaveChangesAsync();
 
+        }
+
+        public async Task<List<PupilParent>> ListParentFromPupil(int id) {
+            var users = (from user in database.PupilParent.Include("Parent").Include("Pupil")
+                            where user.Pupil.Id == id
+                             select user).ToList();
+          //   Console.WriteLine(administratorDescription.EducationalInstitution.Id + "//////");
+             return users;
         }
     }
 }

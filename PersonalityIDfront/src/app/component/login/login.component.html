@@ -14,12 +14,14 @@
     (ngSubmit)="onSubmit()"
 >
  <span class="heading" [translate]="'login_avtorization_label'">AVTORIZATION</span>
+ <h4 [translate]="'login_avtorization_hlogin'">Login</h4>
  <div class="form-group">
- <input type="email" formControlName="login" class="form-control" id="inputEmail" placeholder="E-mail">
+ <input type="email" formControlName="login" class="form-control" id="inputEmail">
  <i class="fa fa-user"></i>
  </div>
+ <h4 [translate]="'login_avtorization_hpassword'">Password</h4>
  <div class="form-group help">
- <input type="password" class="form-control" formControlName="password"  id="inputPassword" placeholder="Password">
+ <input type="password" class="form-control" formControlName="password"  id="inputPassword" [translate]="'login_avtorization_password'">
  <i class="fa fa-lock"></i>
  <a href="#" class="fa fa-question-circle"></a>
  </div>
@@ -28,8 +30,8 @@
  <input type="checkbox" value="none" id="checkbox1" name="check"/>
  <label for="checkbox1"></label>
  </div>
- <span class="text">Запомнить</span>
- <button type="submit" class="btn btn-default">ВХОД</button>
+ <span class="text" [translate]="'login_avtorization_button_remember'">Remember</span>
+ <button type="submit" class="btn btn-default" [translate]="'login_avtorization_button_entry'">ENTRY</button>
  </div>
  </form>
  </div>

@@ -1,7 +1,8 @@
 <div class="form-add-group">
+    <h4 [translate]="'add_device'">Device</h4>
     <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="inputName" class="col-lg-2 control-label">Number</label>
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'list_device_NUMBER'">Number</label>
             <div class="col-lg-10">
                 <input type="text" class="form-control" id="inputText" formControlName="number"  placeholder="number">
             </div>
@@ -10,7 +11,7 @@
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
 
-                <button type="submit" class="btn btn-primary">Enter</button>
+                <button type="submit" class="btn btn-primary" [translate]="'button_add'">Enter</button>
             </div>
         </div>
     </form>

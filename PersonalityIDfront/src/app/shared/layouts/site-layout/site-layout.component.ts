@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,16 +14,23 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SiteLayoutComponent implements OnInit {
   userRole: any = localStorage.getItem("auth-role");
   form!: FormGroup;
-
+  temp: any = localStorage.getItem('translate')
   constructor(private auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private translate: TranslateService) { }
 
     ngOnInit() {
       this.form = new FormGroup({})
 
 
   }
+
+  useLanguage(language: string): void {
+    localStorage.setItem('translate', language);
+    this.temp = localStorage.getItem('translate');
+    this.translate.use(this.temp);
+}
 
 
   onSubmit() {

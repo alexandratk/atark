@@ -13,5 +13,6 @@ namespace PersonalityIdentification.Dtos
         public int TeacherId { get; set; }
         public List<int> GroupId { get; set; }
         public int EducInstId { get; set; }
+        public string strGroupsId { get; set; }
     }
 }

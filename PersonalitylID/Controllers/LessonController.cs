@@ -35,6 +35,13 @@ namespace PersonalityIdentification.Controllers
         [HttpPost("addlesson")]
         public async Task<IActionResult> RegisterLesson([FromBody] LessonDto lessonDto)
         {
+            lessonDto.GroupId = new List<int>();
+            Console.WriteLine(lessonDto.strGroupsId);
+            string[] temp = lessonDto.strGroupsId.Split('$');
+            for (int i = 0; i < temp.Length; i++){
+               lessonDto.GroupId.Add(Convert.ToInt32(temp[i]));
+            }
+            Console.WriteLine(lessonDto.strGroupsId + "///////////");
             List<Group> groups = (from user in context.Group.Include("EducationalInstitution")
                             where lessonDto.GroupId.Contains(user.Id)
                              select user).ToList();
@@ -91,6 +98,38 @@ namespace PersonalityIdentification.Controllers
         {
             var result = LessonService.FindPupilTimeTable(id);
             return Ok(result);
+        }
+
+        [HttpGet("timetable/{id}")]
+        public async Task<IActionResult> TimeTable(int id)
+        {
+            var result = LessonService.FindTimeTable(id);
+            return Ok(result);
+        }
+
+        [HttpGet("timetableselect/{strg}/{strt}/{id}")]
+        public async Task<IActionResult> TimeTableSelect(string strg, string strt, int id)
+        {
+            string[] groups = strg.Split(new char[] { '$' });
+            string[] teachers = strt.Split(new char[] { '$' });
+            List<Lesson> lessons = new List<Lesson>();
+            if (strg != "free") {
+                for(int i = 0; i < groups.Length - 1; i++)
+                {
+                    lessons.AddRange(LessonService.FindGroupTimeTable(Convert.ToInt32(groups[i])));
+                }
+            }
+            if (strt != "free") {
+                for(int i = 0; i < teachers.Length - 1; i++)
+                {
+                    lessons.AddRange(LessonService.FindTeacherTimeTable(Convert.ToInt32(teachers[i])));
+                }
+            }
+            var uniq = lessons.Distinct();
+            var orderedNumbers = from i in uniq
+                     orderby i.Dateofstart
+                     select i;
+            return Ok(orderedNumbers);
         }
 
 

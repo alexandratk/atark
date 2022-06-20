@@ -24,8 +24,8 @@ export class AddNewAdminComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       educationalInstitutionId: new FormControl(null, [Validators.required]),
-      name: new FormControl(null, [Validators.required]),
-      dateofbirth: new FormControl(null, [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      dateofbirth: new FormControl('', [Validators.required]),
       login: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [Validators.required])
   })

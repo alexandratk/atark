@@ -1,12 +1,13 @@
 
 <div class="bs-component">
+    <h4 [translate]="'list_teacher'">List teacher</h4>
     <table class="table table-striped table-hover ">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
-                <th>Column heading</th>
+                <th>ID</th>
+                <th [translate]="'admin_NAME'">NAME</th>
+                <th [translate]="'admin_DATE_OF_BIRTH'">DATE OF BIRTH</th>
             </tr>
         </thead>
         <tbody>
@@ -14,8 +15,8 @@
                 <td>{{i+1}}</td>
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
-                <td>{{item.dateofbirth}}</td>
-                <td><button (click)="onSubmit(item.id)">delete</button></td>
+                <td>{{item.dateofbirth  | date:'dd-MM-yyyy'}}</td>
+                <td><button (click)="onSubmit(item.id)" [translate]="'button_list_delete'">delete</button></td>
             </tr>
         </tbody>
     </table>

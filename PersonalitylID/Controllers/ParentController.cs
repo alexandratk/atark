@@ -7,6 +7,7 @@ using PersonalityIdentification.Itrefaces;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace PersonalityIdentification.Controllers
 {
@@ -45,6 +46,14 @@ namespace PersonalityIdentification.Controllers
             {
                Response = "Parent is deleted successfully"
             });
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpGet("listparentfrompupil/{id}")]
+        public async Task<IActionResult> WriteListParentFromPupil(int id)
+        {
+            var list = await ParentService.ListParentFromPupil(id);
+            return Ok(list);
         }
     }
 }

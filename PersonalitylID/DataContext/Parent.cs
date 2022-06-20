@@ -9,6 +9,7 @@ namespace PersonalityIdentification.DataContext
         {
             PupilParents = new List<PupilParent>();
         }
+        public string EducInstId { get; set; }
         public string Contact { get; set; }
         public IList<PupilParent> PupilParents { get; set; }
     }

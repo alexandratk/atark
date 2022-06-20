@@ -13,5 +13,6 @@ namespace PersonalityIdentification.DataContext
         public Group Group { get; set; }
         public IList<MovingPupil> MovingPupils { get; set; }
         public IList<PupilParent> PupilParents { get; set; }
+        public List<Mark> Marks { get; set; }
     }
 }

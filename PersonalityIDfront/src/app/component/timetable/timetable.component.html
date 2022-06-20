@@ -1,0 +1,66 @@
+
+<div class="select-group">
+  <h5 [translate]="'Groups'">Groups:</h5>
+  <div class="select-data">
+    <div *ngFor="let user of localDBGroups">
+      <div style="float: left;">{{user.title}}</div>
+      <input type="checkbox" (change)="changeStatusGroups(user.id, $event)"/>
+    </div>
+  </div>
+  <div class="output-data">
+    <div *ngFor="let user of selectedItemGroups">
+      <div style="float: left;">{{user.title}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="select-teacher">
+  <h5 [translate]="'Teachers'">Teachers:</h5>
+  <div class="select-data">
+    <div *ngFor="let user of localDBTeachers">
+      <div style="float: left;">{{user.name}}</div>
+      <input type="checkbox" (change)="changeStatusTeachers(user.id, $event)"/>
+    </div>
+  </div>
+  <div class="output-data">
+    <div *ngFor="let user of selectedItemTeachers">
+      <div style="float: left;">{{user.name}}</div>
+    </div>
+  </div>
+</div>
+<button (click)="selectLessons()" [translate]="'button_show'"> Show selected data</button>
+<button (click)="list_request()" [translate]="'button_clear'"> Clear</button>
+<table class='calendar-table' *ngIf="calendar">
+    <thead>
+      <tr>
+        <th [translate]="'Monday'">Monday</th>
+        <th [translate]="'Tuesday'">Tuesday</th>
+        <th [translate]="'Wednesday'">Wednesday</th>
+        <th [translate]="'Thursday'">Thursday</th>
+        <th [translate]="'Friday'">Friday</th>
+        <th [translate]="'Saturday'">Saturday</th>
+        <th [translate]="'Sunday'">Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of calendar | chunk: 7; let i = index">
+        <td class="calendar-day" [ngClass]="{'past-date': c.isPastDate, 'today': c.isToday}" *ngFor="let c of row; let j = index">
+          <div class="calendar-day-header" [ngClass]="{'blue-date': c.isToday}">
+                <strong>{{c.date.getDate()}}</strong>
+                <strong *ngIf="(c.isToday || (i==0 && j==0) || (c.date.getDate() == 1))"> {{monthNames[c.date.getMonth()]}}</strong>
+            </div>
+            <div *ngFor="let item of items">
+                <div class="temp" *ngIf="(c.date | date:'yyyy-M-d') == (item.dateofstart | date:'yyyy-M-d')">
+                  <div>{{item.dateofstart | date:'yyyy-M-d'}}
+                  {{item.dateofstart | date:'hh:mm'}}-{{item.dateoffinish | date:'hh:mm'}}</div>
+                  -----------------  
+                  <div>{{item.teacher.name}}</div>
+                  -----------------
+                  <div *ngFor="let i of item.groups">{{i.title}}</div>
+                  
+                </div>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>

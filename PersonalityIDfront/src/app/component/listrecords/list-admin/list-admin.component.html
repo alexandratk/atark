@@ -1,0 +1,24 @@
+<div class="bs-component">
+    <h4 [translate]="'list_admin'">List admin</h4>
+    <h4>{{namberEducinst}}</h4>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th [translate]="'admin_NAME'">NAME</th>
+                <th [translate]="'admin_DATE_OF_BIRTH'">DATE OF BIRTH</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of items; index as i;">
+                <td>{{i+1}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.dateofbirth | date:'dd-MM-yyyy'}}</td>
+                <td></td>
+                <td><button (click)="onSubmitDelete(item.id)" [translate]="'button_list_delete'">delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- /example -->

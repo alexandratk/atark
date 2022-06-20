@@ -10,6 +10,7 @@ namespace PersonalityIdentification.DataContext
             Groups = new List<Group>();
             Lessons = new List<Lesson>();
         }
+        public string Description { get; set; }
         public EducationalInstitution EducationalInstitution { get; set; }
         public IList<Group> Groups { get; set; }
         public IList<Lesson> Lessons { get; set; }

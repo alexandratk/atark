@@ -1,11 +1,12 @@
 <div class="form-add-group">
+    <h4 [translate]="'add_group'">Group</h4>
     <form class="form-horizontal" [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="inputName" class="col-lg-2 control-label">Title</label>
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'educational_institution_list_TITLE'">Title</label>
             <div class="col-lg-10">
                 <input type="text" class="form-control" id="inputText" formControlName="title"  placeholder="title">
             </div>
-            <label for="inputEmail" class="col-lg-2 control-label">TeacherId</label>
+            <label for="inputEmail" class="col-lg-2 control-label" [translate]="'add_group_TEACHERID'">TeacherId</label>
             <div class="col-lg-10">
                 <input type="text" class="form-control" id="inputEmail" formControlName="teacherId" placeholder="teacherId">
             </div>
@@ -14,7 +15,7 @@
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
 
-                <button type="submit" class="btn btn-primary">Enter</button>
+                <button type="submit" class="btn btn-primary" [translate]="'button_add'">Add</button>
             </div>
         </div>
     </form>

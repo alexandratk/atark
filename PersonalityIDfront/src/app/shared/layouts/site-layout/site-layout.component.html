@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://bootstraptema.ru/snippets/style/2015/bootswatch/bootstrap-sandstone-v3.3.6.css" media="screen">
 <link rel="stylesheet" href="https://bootstraptema.ru/snippets/style/2015/bootswatch/custom.min.css">
 
@@ -16,25 +15,39 @@
         <div [ngSwitch]="userRole">
             <ul class="nav navbar-nav">
                 <ng-template ngSwitchCase="Administrator">
-                    <li><a href="\admin\adduser">AddUser</a></li>
-                    <li><a href="\admin\addgroup">AddGroup </a></li>
-                    <li><a href="\admin\listteacher">ListTeacher</a></li>
-                    <li><a href="\admin\listpupil">ListPupil </a></li>
-                    <li><a href="\admin\listgroup">ListGroup </a></li>
+                    <li><a href="\admin\adduser" [translate]="'AddUser'">AddUser</a></li>
+                    <li><a href="\admin\addgroup" [translate]="'AddGroup'">AddGroup </a></li>
+                    <li><a href="\admin\addlesson" [translate]="'AddLesson'">AddLesson </a></li>
+                    <li><a href="\admin\listteacher" [translate]="'ListTeacher'">ListTeacher</a></li>
+                    <li><a href="\admin\listpupil" [translate]="'ListPupil'">ListPupil </a></li>
+                    <li><a href="\admin\listgroup" [translate]="'ListGroup'">ListGroup </a></li>
+                    <li><a href="\admin\listmovingperson" [translate]="'ListMoving'">ListMoving</a></li>
+                    <li><a href="\admin\timetable\" [translate]="'Timetable'">Timetable</a></li>
+                    <li><a href="\admin\listabsentfromclass" [translate]="'AbsentFromClass'">AbsentFromClass</a></li>
                 </ng-template>
                 <ng-template ngSwitchCase="Pupil">Pupil</ng-template>
+                <ng-template ngSwitchCase="Teacher">
+                    <li><a href="\teacher\timetable\" [translate]="'Timetable'">Timetable</a></li>
+                    <li><a href="\teacher\listpupilonlesson\" [translate]="'listpupilonlesson'">ListPupilOnLesson</a></li>
+                    <li><a href="\teacher\listmarks\" [translate]="'listmarks'">ListMarks</a></li>
+                </ng-template>
                 <ng-template ngSwitchCase="SuperAdministrator">
-                    <li><a href="\superadmin\listeducinst">ListEducInst</a></li>
-                    <li><a href="\superadmin\listdevice">ListDevice</a></li>
-                    <li><a href="\superadmin\addeducinst">AddEducInst</a></li>
-                    <li><a href="\superadmin\adddevice">AddDevice</a></li>
-                    <li><a href="\superadmin\addadmin">AddAdmin</a></li>
+                    <li><a href="\superadmin\listeducinst" [translate]="'ListEducInst'">ListEducInst</a></li>
+                    <li><a href="\superadmin\listdevice" [translate]="'ListDevice'">ListDevice</a></li>
+                    <li><a href="\superadmin\listbackupdb" [translate]="'ListBackupDB'">ListBackupDB</a></li>
+                    <li><a href="\superadmin\addeducinst" [translate]="'AddEducInst'">AddEducInst</a></li>
+                    <li><a href="\superadmin\adddevice" [translate]="'AddDevice'">AddDevice</a></li>
+                    <li><a href="\superadmin\addadmin" [translate]="'AddAdmin'">AddAdmin</a></li>
                 </ng-template>
             </ul>
         </div>
         <ul class="nav navbar-nav navbar-right">
+            <button (click)="useLanguage('en')" class="btn btn-default">en</button>
+            <button (click)="useLanguage('uk')" class="btn btn-default">uk</button>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
             <form class="navbar-form navbar-left" role="search" (ngSubmit)="onSubmit()">
-                <button type="submit" class="btn btn-default">Logout</button>
+                <button type="submit" class="btn btn-default" [translate]="'Logout'">Logout</button>
             </form>
         </ul>
     

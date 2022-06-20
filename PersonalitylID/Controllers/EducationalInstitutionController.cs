@@ -41,6 +41,14 @@ namespace PersonalityIdentification.Controllers
             return Ok(list);
         }
 
+        [Authorize(Roles = "Administrator")]
+        [HttpGet("geteducinst/{id}")]
+        public async Task<IActionResult> WriteEducInst(int id)
+        {
+            var list = await educationalInstitutionService.GetEducInst(id);
+            return Ok(list);
+        }
+
 
         [Authorize(Roles = "SuperAdministrator")]
         [HttpDelete("{id}")]

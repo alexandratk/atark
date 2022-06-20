@@ -23,7 +23,8 @@ export class AddNewEducinstComponent implements OnInit {
     ngOnInit(): void {
       this.form = new FormGroup({
         title: new FormControl(null, [Validators.required]),
-        address: new FormControl(null, [Validators.required])
+        address: new FormControl(null, [Validators.required]),
+        timetable: new FormControl(null, [Validators.required])
     })
     }
 

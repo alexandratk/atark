@@ -37,6 +37,13 @@ namespace PersonalityIdentification.Services
 
         }
 
+        public async Task<EducationalInstitution> GetEducInst(int id)
+        {
+            var users = (from user in database.EducationalInstitution where user.Id == id select user).ToList()[0];
+             return users;
+        }
+
+
         public async Task<List<EducationalInstitution>> ListEducinst() {
             var users = (from user in database.EducationalInstitution select user).ToList();
              return users;

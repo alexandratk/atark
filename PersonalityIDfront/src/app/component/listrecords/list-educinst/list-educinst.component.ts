@@ -42,10 +42,15 @@ export class ListEducinstComponent implements OnInit {
       })
   }
 
-  onSubmitListPupil(id: any) {
+  onSubmitListDevice(id: any) {
     localStorage.setItem('number-educinst', id);
     this.router.navigateByUrl("superadmin/listdevicefromeducinst");
     alert(id)
   }
 
+  onSubmitListAdmin(id: any) {
+    localStorage.setItem('number-educinst', id);
+    this.router.navigateByUrl("superadmin/listadmin");
+    alert(id)
+  }
 }

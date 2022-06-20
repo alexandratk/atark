@@ -1,0 +1,92 @@
+<div class="form-add-user">
+<form class="form-horizontal" [formGroup]="form">
+    <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label" [translate]="'DATE'">Date</label>
+        <div class="col-lg-10">
+            <input type="date" name="form-control" class="form-control" id="inputText" formControlName="dateStart" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label" [translate]="'TEACHER_ID'">TeacherId</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputText" formControlName="teacherId" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label" [translate]="'groupId'">GroupId</label>
+        <div class="col-lg-10">
+            <input type="text" name="form-control" class="form-control" id="inputText" formControlName="groupId" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label" [translate]="'description'">Description</label>
+        <div class="col-lg-10">
+            <input type="text" name="form-control" class="form-control" id="inputText" formControlName="description" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()" [translate]="'button_entry'">Enter</button>
+        </div>
+    </div>
+</form>
+</div>
+
+<div class="form-add-user">
+    <form class="form-horizontal" [formGroup]="form1">
+        <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'NAME'">NAME</label>
+            <div class="col-lg-10">
+                <div>{{ updateMarkName }}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'DATE'">Date</label>
+            <div class="col-lg-10">
+                <div>{{ updateMarkTime }}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'MARK'">MARK</label>
+            <div class="col-lg-10">
+                <div>{{ updateMarkMark }}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'NEWMARK'">NEWMARK</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText" formControlName="lessonMark" required/>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary" (click)="updateMarkDB()" [translate]="'button_entry'">Enter</button>
+            </div>
+        </div>
+    </form>
+    </div>
+
+<div class="bs-component">
+    <h4 [translate]="'add_group'">Group</h4>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th [translate]="'NAME'">NAME</th>
+                <th *ngFor="let lesson of lessons; index as j">{{ lesson.dateofstart }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pupil of pupils; index as i;">
+                <td>{{i+1}}</td>
+                <td>{{pupil.id}}</td>
+                <td>{{pupil.name}}</td>
+                <td *ngFor="let item of lessons; index as j;"><button type="submit" class="btn btn-primary" (click)="changeMark(i, j)" [translate]="'button_entry'">{{ items[i * lessonsLength + j].lessonMark }}</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- /example -->

@@ -9,6 +9,7 @@ import { User, UserData } from 'src/app/interfaces/interfaces';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
+  temp: any
   userName: string = "";
   userDate: string = "";
   userId: any = localStorage.getItem("auth-id");
@@ -29,6 +30,7 @@ export class ProfileComponent {
   mysearch() {
     this.http.post('http://localhost:5000/user/profile', this.user).subscribe(
             (data: any) => {
+                this.temp = data;
                 this.userData = data;
                 this.userName = this.userData.name
                 this.userDate = this.userData.dateofbirth

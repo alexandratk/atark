@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, tap } from "rxjs";
-import { Device, EducationalInstitution, Group, User, UserData, UserRegister } from "../interfaces/interfaces";
+import { Device, EducationalInstitution, Group, Lesson, User, UserData, UserRegister } from "../interfaces/interfaces";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -87,6 +87,16 @@ export class AddUserService {
 
     add_device(device: Device) {
         return this.http.post('http://localhost:5000/Device/adddevice/', device, {headers: this.headers}).subscribe(
+            (data: any) => {
+                alert("ok")
+            },
+            error => {
+                console.warn(error)
+            })
+    }
+
+    add_lesson(lesson: Lesson) {
+        return this.http.post('http://localhost:5000/Lesson/addlesson', lesson, {headers: this.headers}).subscribe(
             (data: any) => {
                 alert("ok")
             },

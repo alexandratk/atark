@@ -12,6 +12,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace PersonalityIdentification.Controllers
 {
@@ -86,6 +87,14 @@ namespace PersonalityIdentification.Controllers
             return Ok(new { Message = "Database is backed up" });
         }
 
+        [Authorize(Roles = "SuperAdministrator")]
+        [HttpGet("listadmin/{id}")]
+        public async Task<IActionResult> WriteListAdmin(int id)
+        {
+            Console.WriteLine(id);
+            var list = await administratorService.ListAdmin(id);
+            return Ok(list);
+        }
 
         [HttpGet("restore/{backupId}")]
         public async Task<IActionResult> Restore(long backupId)
@@ -148,6 +157,7 @@ namespace PersonalityIdentification.Controllers
 
             return BadRequest(new { Message = "Can't delete the file" });
         }
+        
 
 
         private string GetConnectionString(string basePath)
@@ -159,6 +169,7 @@ namespace PersonalityIdentification.Controllers
             string connectionString = configuration.GetConnectionString("PersonalIdConString");
             return connectionString;
         }
+        
 
         private bool LoadDB(string orig_mdf, string orig_ldf, string new_database_name, string fileNameToRestore)
         {

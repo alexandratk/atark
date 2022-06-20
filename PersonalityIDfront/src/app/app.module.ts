@@ -31,8 +31,19 @@ import { ListDeviceComponent } from './component/listrecords/list-device/list-de
 import { ListDeviceFromEducinstComponent } from './component/listrecords/list-device-from-educinst/list-device-from-educinst.component';
 import { AddNewAdminComponent } from './component/addrecords/add-new-admin/add-new-admin.component';
 import { AddNewDeviceComponent } from './component/addrecords/add-new-device/add-new-device.component';
-
-
+import { ListAdminComponent } from './component/listrecords/list-admin/list-admin.component';
+import { TimetableComponent } from './component/timetable/timetable.component';
+import { ChunkPipe } from './pipe/chunk.pipe';
+import { CheckboxComponent } from './component/checkbox/checkbox.component';
+import { ListParentFromPupilComponent } from './component/listrecords/list-parent-from-pupil/list-parent-from-pupil.component';
+import { ListBackupDbComponent } from './component/listrecords/list-backup-db/list-backup-db.component';
+import { UpdateUserComponent } from './component/updaterecords/update-user/update-user.component';
+import { ListMovingPersonComponent } from './component/listrecords/list-moving-person/list-moving-person.component';
+import { AddLessonComponent } from './component/addrecords/add-lesson/add-lesson.component';
+import { ListAbsentFromClassComponent } from './component/listrecords/list-absent-from-class/list-absent-from-class.component';
+import { TeacherLayoutComponent } from './shared/layouts/teacher-layout/teacher-layout.component';
+import { ListPupilOnLessonComponent } from './component/listrecords/list-pupil-on-lesson/list-pupil-on-lesson.component';
+import { ListMarksComponent } from './component/listrecords/list-marks/list-marks.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,9 +66,23 @@ import { AddNewDeviceComponent } from './component/addrecords/add-new-device/add
     ListDeviceComponent,
     ListDeviceFromEducinstComponent,
     AddNewAdminComponent,
-    AddNewDeviceComponent
+    AddNewDeviceComponent,
+    ListAdminComponent,
+    TimetableComponent,
+    ChunkPipe,
+    CheckboxComponent,
+    ListParentFromPupilComponent,
+    ListBackupDbComponent,
+    UpdateUserComponent,
+    ListMovingPersonComponent,
+    AddLessonComponent,
+    ListAbsentFromClassComponent,
+    TeacherLayoutComponent,
+    ListPupilOnLessonComponent,
+    ListMarksComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

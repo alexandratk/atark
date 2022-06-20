@@ -10,5 +10,6 @@ namespace PersonalityIdentification.Helpers
         public DateTime Dateofstart { get; set; }
         public DateTime Dateoffinish { get; set; }
         public List<int> GroupsId { get; set; }
+        public string strGroupsId { get; set; }
     }
 }

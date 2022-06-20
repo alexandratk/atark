@@ -52,7 +52,7 @@ namespace PersonalityIdentification.Controllers
             });
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Teacher")]
         [HttpGet("listgroup/{id}")]
         public async Task<IActionResult> WriteListGroup(int id)
         {

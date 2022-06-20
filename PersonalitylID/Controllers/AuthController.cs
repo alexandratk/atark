@@ -24,6 +24,14 @@ namespace PersonalityIdentification.Controllers
             this.mapper = mapper;
         }
 
+        [HttpGet("authuser")]
+        public async Task<IActionResult> Test()
+        {
+            string  t = "lalalalla";
+            
+            return Ok(t);
+        }
+
         [HttpPost("authuser")]
         public async Task<IActionResult> AuthUser([FromBody] AuthRequestModel authRequestModel)
         {

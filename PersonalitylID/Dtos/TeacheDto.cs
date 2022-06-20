@@ -9,5 +9,6 @@ namespace PersonalityIdentification.Dtos
         public string Name { get; set; }
         public DateTime Dateofbirth { get; set; }
         public int EducationalInstitutionId { get; set; }
+        public string Description {get; set;}
     }
 }

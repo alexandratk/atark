@@ -1,0 +1,109 @@
+<div class="forms">
+<div class="form-add-user">
+        <div class="form-group">
+        <select class="form-control" id="select" [(ngModel)]="selectedTime" (ngModelChange)="onChange($event)" >
+            <option *ngFor="let c of timetable" [ngValue]="c"> {{c}} </option>
+        </select>
+        </div>
+    <form class="form-horizontal" [formGroup]="form">
+        <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'DATE'">Date</label>
+            <div class="col-lg-10">
+                <input type="date" name="form-control" class="form-control" id="inputText" formControlName="date" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'TEACHER_ID'">TeacherId</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText" formControlName="teacherId" required/>
+            </div></div>
+            <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'AUDIENCE'">Audience</label>
+            <div class="col-lg-10">
+                <input type="text" name="form-control" class="form-control" id="inputText" formControlName="audience" required/>
+            </div></div>
+            <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label" [translate]="'DESCRIPTION'">Description</label>
+            <div class="col-lg-10">
+                <input type="text" name="form-control" class="form-control" id="inputEmail" formControlName="description"  required>
+            </div>
+            </div>
+
+            <div class="group_list" [translate]="'Groups'">Groups:</div>
+            <div class="group_list">
+                <div *ngFor="let user of localDBGroups">
+                  <div style="float: left;">{{user.title}}</div>
+                  <input type="checkbox" (change)="changeStatusGroups(user.id, $event)"/>
+                </div>
+              </div>
+
+            <div class="form-group">
+              <div class="output-data">
+                <div *ngFor="let user of selectedItemGroups">
+                  <div style="float: left;">{{user.title}}</div>
+                </div>
+              </div></div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+
+                <button type="submit" class="btn btn-primary" (click)="onSubmit()" [translate]="'button_entry'">Enter</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="second_form">
+    <form class="form-horizontal" [formGroup]="form1">
+        
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'DATEOFSTART'">Dateofstart</label>
+            <div class="col-lg-10">
+                <input type="date" name="form-control" class="form-control" id="inputText" formControlName="dateofstart" required>
+            </div>
+
+
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'DATEOFFINISH'">Dateoffinish</label>
+            <div class="col-lg-10">
+                <input type="date" name="form-control" class="form-control" id="inputText" formControlName="dateoffinish" required>
+            </div>
+
+            <label for="inputName" class="col-lg-2 control-label" [translate]="'TEACHER_ID'">TeacherId</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputText" formControlName="teacherId" required/>
+            </div>
+
+            <div class="group_list" [translate]="'Groups'">
+                Groups:
+            <div class="select-data">
+                <div *ngFor="let user of localDBGroups">
+                <div style="float: left;">{{user.title}}</div>
+                <input type="checkbox" (change)="changeStatusGroups1(user.id, $event)"/>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary" (click)="onSubmitFindVariant()" [translate]="'button_find'">FindVariant</button>
+            </div>
+        </div>
+
+        <div class="bs-component">
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of points; index as i;">
+                        <td>{{i+1}}</td>
+                        <td>{{item}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!-- /example -->
+    </form>
+</div>
+</div>
